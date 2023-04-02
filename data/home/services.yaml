@@ -1,0 +1,27 @@
+enabled: true
+id: "services"
+
+content:
+  title: "Služby"
+  text: ""
+  cards:
+    - image: "images/water.jpg"
+      title: "Voda"
+      text: ""
+      button:
+        label: "Viac ..."
+        url: "post/voda"
+
+    - image: "images/heat-fire.jpeg"
+      title: "Kúrenie"
+      text: ""
+      button:
+        label: "Viac ..."
+        url: "post/kurenie"
+
+    - image: "images/gas.jpg"
+      title: "Plyn"
+      text: ""
+      button:
+        label: "Viac ..."
+        url: "post/plyn"

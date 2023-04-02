@@ -1,0 +1,87 @@
+baseURL: "https://www.example.com/"
+theme: "up-business-theme"
+languageCode: "en-us"
+
+title: "LigGas"
+
+# googleAnalytics: ""
+
+summaryLength: 20
+
+params:
+  title: "LigGas"
+  description: "Hlavným predmetom činnosti firmy je realizácia inžinierskych sieti (NTL, STL, VTL, plynovod, vodovod, kanalizacia)."
+  images: 
+    - "images/hero-image.png"
+    # - "images/water.jpg"
+
+  logo: "arrow-up.png"
+
+  favicons:
+    themeColor: "#FFFFFF"
+    backgroundColor: "#FFFFFF"
+    faviconColor: "#000000"
+
+  social:
+    dribbble: "#"
+    instagram: "#"
+    facebook: "#"
+    twitter: "#"
+
+  location:
+    - "Záhradná 590/34, Viničné 900 23, Slovensko"
+
+  contact:
+    - "stefan.ligyak@liggas.sk"
+    - "+421 911 716 136"
+
+  copyright: "© 2023 LigGas All Rights Reserved"
+
+menus:
+  main:
+    - name: "O nás"
+      url: "/#hero"
+      weight: 1
+
+    # - name: "How we work"
+    #   url: "/#"
+    #   weight: 2
+
+    # - name: "Our team"
+    #   url: "/#"
+    #   weight: 3
+
+    - name: "Referencie"
+      url: "/blog"
+      weight: 5
+
+  buttons:
+    - name: "Book a call"
+      url: "/#"
+      weight: 5
+      pre: "btn btn-primary text-light"
+
+  footer:
+    - name: "O nás"
+      url: "/#hero"
+      weight: 1
+
+    # - name: "How we work"
+    #   url: "/#"
+    #   weight: 2
+
+    # - name: "Our team"
+    #   url: "/#"
+    #   weight: 3
+
+    # - name: "Pricing"
+    #   url: "/#"
+    #   weight: 4
+
+    - name: "Referencie"
+      url: "/blog"
+      weight: 5
+
+taxonomies:
+  series: "series"
+  tags: "tags"
