@@ -1,0 +1,49 @@
+---
+const palettes = [
+  { id: "teren", name: "Terén" },
+  { id: "ocel", name: "Oceľ" },
+  { id: "beton", name: "Betón" },
+  { id: "voda", name: "Voda" },
+  { id: "signal", name: "Signál" },
+  { id: "piesok", name: "Piesok" },
+];
+---
+
+<div class="palette-bar">
+  <p>Skúšobné farby</p>
+  <div role="group" aria-label="Farebné palety">
+    {
+      palettes.map((palette) => (
+        <button type="button" data-palette={palette.id} aria-pressed={palette.id === "teren"}>
+          <span class={`swatch swatch-${palette.id}`} aria-hidden="true" />
+          {palette.name}
+        </button>
+      ))
+    }
+  </div>
+</div>
+
+<script>
+  const storageKey = "liggas-palette";
+  const root = document.documentElement;
+  const buttons = [...document.querySelectorAll<HTMLButtonElement>("[data-palette]")];
+
+  const apply = (id: string) => {
+    if (id === "teren") root.removeAttribute("data-palette");
+    else root.dataset.palette = id;
+    for (const button of buttons) {
+      button.setAttribute("aria-pressed", String(button.dataset.palette === id));
+    }
+    localStorage.setItem(storageKey, id);
+  };
+
+  const saved = localStorage.getItem(storageKey);
+  if (saved) apply(saved);
+
+  for (const button of buttons) {
+    button.addEventListener("click", () => {
+      const id = button.dataset.palette;
+      if (id) apply(id);
+    });
+  }
+</script>

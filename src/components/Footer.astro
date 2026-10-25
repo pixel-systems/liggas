@@ -1,0 +1,18 @@
+---
+import { company } from "../data/site";
+const year = new Date().getFullYear();
+---
+
+<footer class="site-footer">
+  <div class="footer-inner container">
+    <p>
+      © {year} {company.legalName}, {company.street}, {company.postalCode} {company.locality}
+    </p>
+    <p>
+      <a href={company.registerHref} rel="noopener noreferrer">
+        {company.registerLabel}
+      </a>
+      · IČO {company.ico}
+    </p>
+  </div>
+</footer>

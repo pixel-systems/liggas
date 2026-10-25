@@ -1,0 +1,17 @@
+---
+import Base from "../layouts/Base.astro";
+import { pageHref } from "../data/site";
+---
+
+<Base
+  title="Stránka sa nenašla — LigGas"
+  description="Požadovaná stránka na webe LigGas neexistuje."
+>
+  <div class="container missing">
+    <h1>Stránka sa nenašla</h1>
+    <p class="lede">Adresa nevedie na žiadnu časť webu.</p>
+    <p class="section-link">
+      <a class="button ink" href={pageHref("/")}>Späť na úvod</a>
+    </p>
+  </div>
+</Base>

@@ -1,0 +1,28 @@
+---
+import { Image } from "astro:assets";
+import { pageHref, photosLabel, references } from "../data/site";
+import { galleries } from "../data/photos";
+---
+
+<div class="ref-grid">
+  {
+    references.map((item) => {
+      const images = galleries[item.slug];
+      const cover = images[item.cover] ?? images[0];
+      return (
+        <a class="ref-card" href={pageHref(`/referencie/${item.slug}/`)}>
+          <Image
+            src={cover}
+            alt=""
+            widths={[640, 1100, 1500]}
+            sizes="(min-width: 980px) 50vw, 100vw"
+          />
+          <span>
+            <strong>{item.title}</strong>
+            <em>{photosLabel(images.length)}</em>
+          </span>
+        </a>
+      );
+    })
+  }
+</div>

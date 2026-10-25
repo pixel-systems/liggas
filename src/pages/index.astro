@@ -1,0 +1,174 @@
+---
+import { Image } from "astro:assets";
+import Base from "../layouts/Base.astro";
+import ReferenceGrid from "../components/ReferenceGrid.astro";
+import { aboutPhoto, hero } from "../data/photos";
+import { company, pageHref, services } from "../data/site";
+
+const description =
+  "LigGas s.r.o. z Viničného realizuje od roku 2002 plynovody NTL, STL a VTL, vodovody, kanalizácie, teplovody a vykurovanie.";
+---
+
+<Base title="LigGas — inžinierske siete" description={description}>
+  <section class="hero">
+    <div class="container hero-copy">
+      <p class="eyebrow">{company.legalName} · {company.locality}</p>
+      <h1>Plynovody, vodovody a kanalizácie.</h1>
+      <p class="lede">
+        Od roku {company.since} staviame a rekonštruujeme inžinierske siete.
+        Plynovody od nízkotlaku po vysokotlak, vodovody, kanalizácie, teplovody
+        aj vykurovanie.
+      </p>
+      <div class="actions">
+        <a class="button solid" href={pageHref("/referencie/")}>Pozrieť referencie</a>
+        <a class="button ghost" href={pageHref("/kontakt/")}>Kontakt</a>
+      </div>
+    </div>
+      <div class="hero-photo">
+      <Image
+        src={hero}
+        alt="Rýpadlo otvára ryhu pre uloženie potrubia"
+        loading="eager"
+        fetchpriority="high"
+        widths={[800, 1400, 1920]}
+        sizes="100vw"
+      />
+      <p class="hero-credit">
+        Ilustračná fotografia ·
+        <a href="https://unsplash.com/photos/oX2MggrtCVA" rel="noopener noreferrer">Built Robotics</a>
+        / Unsplash
+      </p>
+    </div>
+    <div class="container">
+      <dl class="facts">
+        <div>
+          <dt>Od roku</dt>
+          <dd>{company.since}</dd>
+        </div>
+        <div>
+          <dt>Plyn</dt>
+          <dd>NTL, STL, VTL</dd>
+        </div>
+        <div>
+          <dt>Materiály</dt>
+          <dd>PE, PVC, oceľ, liatina</dd>
+        </div>
+        <div>
+          <dt>Pretláčanie</dt>
+          <dd>pod komunikácie do 130 mm</dd>
+        </div>
+      </dl>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="cinnost">
+    <div class="container">
+      <div class="section-heading">
+        <h2 id="cinnost">Rozsah prác</h2>
+        <p>
+          Spoločnosť vznikla prechodom fyzickej osoby „Štefan Ligyak – LIGYAK“,
+          ktorý vykonával svoju činnosť od roku {company.since}. Predmetom
+          ostáva realizácia inžinierskych sietí v celom rozsahu.
+        </p>
+      </div>
+      <ol class="services">
+        {
+          services.map((service, index) => (
+            <li class="service">
+              <span class="num">{String(index + 1).padStart(2, "0")}</span>
+              <div>
+                <h3>{service.title}</h3>
+                <p>{service.text}</p>
+              </div>
+              <ul>
+                {service.items.map((item) => (
+                  <li>{item}</li>
+                ))}
+              </ul>
+            </li>
+          ))
+        }
+      </ol>
+    </div>
+  </section>
+
+  <section class="section band" aria-labelledby="o-nas">
+    <div class="container about-grid">
+      <div class="prose">
+        <h2 id="o-nas">O nás</h2>
+        <p>
+          {company.legalName} sídli na adrese {company.street}, {company.postalCode}
+          {company.locality}. Hlavným predmetom činnosti je realizácia
+          inžinierskych sietí: NTL, STL a VTL plynovodov, vodovodov a
+          kanalizácie.
+        </p>
+        <p>
+          Rozsah prác vychádza z doterajších skúseností, referencií a odborného
+          zázemia. Okrem samotných sietí firma zabezpečuje poradenstvo,
+          projektovú a inžiniersku činnosť, zemné práce aj obnovu komunikácií.
+        </p>
+        <p>
+          <a class="text-link" href={pageHref("/opravnenia/")}>Oprávnenia a osvedčenia</a>
+        </p>
+      </div>
+      <figure class="about-photo">
+        <Image
+          src={aboutPhoto}
+          alt="Výkop s uloženým oranžovým plynovým potrubím pozdĺž komunikácie"
+          widths={[640, 1100]}
+          sizes="(min-width: 980px) 40vw, 100vw"
+        />
+        <figcaption>Realizácia plynovodu</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="referencie">
+    <div class="container">
+      <div class="section-heading">
+        <h2 id="referencie">Referencie</h2>
+        <p>
+          Fotografie z výstavby plynovodov, vodovodov, kanalizácií, teplovodov a
+          vykurovania.
+        </p>
+      </div>
+      <ReferenceGrid />
+      <p class="section-link">
+        <a class="text-link" href={pageHref("/referencie/")}>Všetky referencie</a>
+      </p>
+    </div>
+  </section>
+
+  <section class="visit" aria-labelledby="kontakt-domov">
+    <div class="container visit-grid">
+      <div>
+        <p class="eyebrow">Kontakt</p>
+        <h2 id="kontakt-domov">
+          {company.street},<br />{company.locality}
+        </h2>
+        <a class="phone-xl" href={company.phoneHref}>{company.phoneDisplay}</a>
+        <div>
+          <a class="mail" href={`mailto:${company.email}`}>{company.email}</a>
+        </div>
+      </div>
+      <dl class="meta-list">
+        <div>
+          <dt>IČO</dt>
+          <dd>{company.ico}</dd>
+        </div>
+        <div>
+          <dt>Register</dt>
+          <dd>
+            <a href={company.registerHref} rel="noopener noreferrer">
+              {company.registerLabel}
+            </a>
+          </dd>
+        </div>
+        <div>
+          <dt>Spoločnosť</dt>
+          <dd>{company.legalName}</dd>
+        </div>
+      </dl>
+    </div>
+  </section>
+</Base>

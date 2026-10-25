@@ -1,0 +1,23 @@
+---
+import Base from "../../layouts/Base.astro";
+import ReferenceGrid from "../../components/ReferenceGrid.astro";
+
+const description =
+  "Referencie LigGas: fotografie z výstavby plynovodov, vodovodov, kanalizácií, teplovodov a vykurovania.";
+---
+
+<Base title="Referencie — LigGas" description={description}>
+  <div class="container">
+    <header class="page-hero">
+      <p class="eyebrow">Realizácie</p>
+      <h1>Referencie</h1>
+      <p class="lede">
+        Päť skupín fotografií z prác, ktoré firma zverejnila. Ku každej sa dá
+        prejsť celá galéria.
+      </p>
+    </header>
+  </div>
+  <div class="container page-end">
+    <ReferenceGrid />
+  </div>
+</Base>

@@ -1,0 +1,39 @@
+---
+import Base from "../layouts/Base.astro";
+import Gallery from "../components/Gallery.astro";
+import { certificateGroups } from "../data/photos";
+
+const description =
+  "Oprávnenia a osvedčenia LigGas s.r.o.: zváranie plastov a plynové zariadenia.";
+---
+
+<Base title="Oprávnenia — LigGas" description={description}>
+  <div class="container">
+    <header class="page-hero">
+      <p class="eyebrow">Doklady</p>
+      <h1>Oprávnenia</h1>
+      <p class="lede">
+        Doklady ku zváraniu plastov a k plynovým zariadeniam. Dátum platnosti je
+        uvedený priamo na skene.
+      </p>
+    </header>
+    <div class="stack">
+      {
+        certificateGroups.map((group) => (
+          <section class="group" aria-labelledby={group.title}>
+            <h2 id={group.title}>{group.title}</h2>
+            <p class="note">{group.note}</p>
+            <Gallery
+              images={group.images}
+              fit="contain"
+              label={group.title}
+              alts={group.images.map(
+                (_, index) => `${group.title}, dokument ${index + 1}`,
+              )}
+            />
+          </section>
+        ))
+      }
+    </div>
+  </div>
+</Base>

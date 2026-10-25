@@ -1,0 +1,68 @@
+---
+import { company, isCurrent, isInSection, pageHref, references } from "../data/site";
+
+const path = Astro.url.pathname;
+---
+
+<header class="site-header">
+  <div class="header-inner container">
+    <a class="brand" href={pageHref("/")} aria-label="LigGas, úvod">
+      <span class="mark" aria-hidden="true"></span>
+      {company.name}
+    </a>
+    <nav id="site-nav" class="site-nav" aria-label="Hlavné menu">
+      <a href={pageHref("/")} aria-current={isCurrent(path, "/") ? "page" : undefined}>O nás</a>
+      <a
+        href={pageHref("/opravnenia/")}
+        aria-current={isCurrent(path, "/opravnenia/") ? "page" : undefined}
+      >
+        Oprávnenia
+      </a>
+      <div class:list={["nav-item", { "is-here": isInSection(path, "/referencie/") }]}>
+        <a
+          href={pageHref("/referencie/")}
+          aria-current={isCurrent(path, "/referencie/") ? "page" : undefined}
+        >
+          Referencie
+        </a>
+        <div class="sub">
+          {
+            references.map((item) => (
+              <a
+                href={pageHref(`/referencie/${item.slug}/`)}
+                aria-current={
+                  isCurrent(path, `/referencie/${item.slug}/`) ? "page" : undefined
+                }
+              >
+                {item.title}
+              </a>
+            ))
+          }
+        </div>
+      </div>
+      <a
+        href={pageHref("/kontakt/")}
+        aria-current={isCurrent(path, "/kontakt/") ? "page" : undefined}
+      >
+        Kontakt
+      </a>
+    </nav>
+    <div class="header-tools">
+      <a class="header-call" href={company.phoneHref}>
+        <span class="call-long">{company.phoneDisplay}</span>
+        <span class="call-short">Zavolať</span>
+      </a>
+      <button
+        class="nav-toggle"
+        type="button"
+        aria-expanded="false"
+        aria-controls="site-nav"
+        aria-label="Otvoriť menu"
+      >
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </div>
+</header>

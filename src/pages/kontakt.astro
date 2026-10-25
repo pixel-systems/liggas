@@ -1,0 +1,67 @@
+---
+import Base from "../layouts/Base.astro";
+import { company, mapEmbedSrc, mapLink } from "../data/site";
+
+const description =
+  "Kontakt na LigGas s.r.o.: Záhradná 590/34, Viničné, telefón +421 911 716 136, stefan.ligyak@liggas.sk.";
+---
+
+<Base title="Kontakt — LigGas" description={description}>
+  <div class="container">
+    <header class="page-hero">
+      <p class="eyebrow">{company.legalName}</p>
+      <h1>Kontakt</h1>
+      <p class="lede">
+        Zavolajte alebo napíšte. Sídlo je vo Viničnom, v okrese Pezinok.
+      </p>
+    </header>
+    <div class="contact-layout">
+      <div class="contact-card">
+        <div>
+          <h2>Telefón</h2>
+          <p><a href={company.phoneHref}>{company.phoneDisplay}</a></p>
+        </div>
+        <div>
+          <h2>E-mail</h2>
+          <p><a href={`mailto:${company.email}`}>{company.email}</a></p>
+        </div>
+        <div>
+          <h2>Adresa</h2>
+          <address>
+            {company.street}<br />
+            {company.postalCode} {company.locality}<br />
+            {company.country}
+          </address>
+        </div>
+        <div>
+          <h2>IČO</h2>
+          <p>{company.ico}</p>
+        </div>
+        <div>
+          <h2>Register</h2>
+          <p>
+            <a href={company.registerHref} rel="noopener noreferrer">
+              {company.registerLabel}
+            </a>
+          </p>
+        </div>
+      </div>
+      <div>
+        <div class="map-frame">
+          <iframe
+            title="Mapa sídla LigGas, Záhradná 590/34, Viničné"
+            src={mapEmbedSrc()}
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
+        <p class="map-note">
+          <a href={mapLink()} rel="noopener noreferrer">Otvoriť mapu</a>
+          · mapa ©
+          <a href="https://www.openstreetmap.org/copyright" rel="noopener noreferrer">
+            OpenStreetMap
+          </a>
+        </p>
+      </div>
+    </div>
+  </div>
+</Base>
