@@ -12,7 +12,7 @@ The previous repository was an unfinished Hugo theme. The live site is a small W
 
 ## Run locally
 
-Node.js 22 or newer.
+Node.js 22.23.4 or newer.
 
 ```sh
 npm ci
