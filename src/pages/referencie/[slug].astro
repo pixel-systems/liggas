@@ -1,0 +1,42 @@
+---
+import Base from "../../layouts/Base.astro";
+import Gallery from "../../components/Gallery.astro";
+import { galleries } from "../../data/photos";
+import { pageHref, photosLabel, references } from "../../data/site";
+
+export function getStaticPaths() {
+  return references.map((item) => ({
+    params: { slug: item.slug },
+    props: { item },
+  }));
+}
+
+const { item } = Astro.props;
+const images = galleries[item.slug];
+const description = `${item.title}: ${item.summary} ${photosLabel(images.length)} z realizácií LigGas.`;
+---
+
+<Base title={`${item.title} — LigGas`} description={description}>
+  <div class="container">
+    <header class="page-hero">
+      <p class="crumb">
+        <a href={pageHref("/referencie/")}>Referencie</a>
+        / {item.title}
+      </p>
+      <h1>{item.title}</h1>
+      <p class="lede">
+        {item.summary} {photosLabel(images.length)}.
+      </p>
+    </header>
+    <div class="stack">
+      <Gallery
+        images={images}
+        label={`Galéria ${item.title}`}
+        alts={images.map(
+          (_, index) =>
+            `${item.title}, fotografia ${index + 1} z ${images.length}`,
+        )}
+      />
+    </div>
+  </div>
+</Base>
